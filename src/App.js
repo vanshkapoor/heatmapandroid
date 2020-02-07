@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import LandingPage from './components/landingPage';
 import Heatmap from './components/Heatmap'
+import firebase from './firebase'
 
 
 // const Parse = require('parse');
@@ -20,14 +21,14 @@ class App extends Component {
 
   render() {
     return (
-      // <Router >
+      <Router >
         <div className="App"> 
-        <Route exact path="/" component={LandingPage} />
-        {/* <Heatmap /> */}
+        {/* <Route exact path="/" component={LandingPage} /> */}
+        <Heatmap />
 
 
         </div>
-      // </Router>
+      </Router>
     )
   }
 }

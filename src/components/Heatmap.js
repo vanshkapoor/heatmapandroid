@@ -32,9 +32,14 @@ let heatmapData = {
     opacity:0.7,
 }
 }
+// let loading = true
   // let positions =[]
   
   class Heatmap extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {loading: true};
+    }
     static defaultProps = {
       center: {lat: 28.5590179, lng: 77.0534842},
       zoom: 15
@@ -45,11 +50,15 @@ let heatmapData = {
       itemsRef.on("value",(snapshot) => {
         let data = snapshot.val()
         Object.entries(data.SOS).map(([key,value]) => heatmapData.positions.push({ lat:value.lat , lng:value.long }))
+        console.log(heatmapData)
+        this.setState({loading:false})
       })
     }
 
     render() {
       return (
+        <>
+        {this.state.loading?<p>map is loading</p>:
          <GoogleMapReact
           style={{position:'absolute !Important'}}
           defaultCenter={this.props.center}
@@ -68,6 +77,8 @@ let heatmapData = {
             text={'test'} 
           /> */}
         </GoogleMapReact>
+    }
+        </>
       );
     }
   }
