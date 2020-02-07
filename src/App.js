@@ -22,8 +22,8 @@ class App extends Component {
     return (
       // <Router >
         <div className="App"> 
-        {/* <Route exact path="/" component={LandingPage} /> */}
-        <Heatmap />
+        <Route exact path="/" component={LandingPage} />
+        {/* <Heatmap /> */}
 
 
         </div>

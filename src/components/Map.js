@@ -42,6 +42,7 @@ const AnyReactComponent = ({ text }) => (
     render() {
       return (
          <GoogleMapReact
+          style={{position:'absolute !Important'}}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         //   heatmapLibrary = {true}

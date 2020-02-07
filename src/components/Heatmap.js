@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import GoogleMapReact from 'google-map-react'
+import firebase from 'firebase'
 
 const AnyReactComponent = ({ text }) => (
     <div style={{
@@ -17,27 +18,35 @@ const AnyReactComponent = ({ text }) => (
     </div>
   );
 
-  const heatmapData = {    
-    positions: [
-      {lat: 59.955413, lng: 30.337844},
-      {lat: 59.955400, lng: 30.337844},
-      {lat: 59.955820, lng: 30.337844},
-      {lat: 59.955490, lng: 30.337844},
-      {lat: 59.955470, lng: 30.3374},
-      {lat: 59.95330, lng: 30.337844},
 
-    ],
-    options: {   
-      radius: 40,   
-      opacity:0.8,
-  }
+let heatmapData = {    
+  positions: [
+    {lat: 28.5590179, lng: 77.0534842}
+    // {lat: 28.5590179, lng: 77.0534842},
+    // {lat: 28.5590179, lng: 77.0534842},
+    // {lat: 28.5590179, lng: 77.0534842},
+    // {lat: 28.5590179, lng: 77.0534842},      
+  ],
+  options: {   
+    radius: 40,   
+    opacity:0.7,
 }
+}
+  // let positions =[]
   
   class Heatmap extends React.Component {
     static defaultProps = {
-      center: {lat: 59.95, lng: 30.33},
+      center: {lat: 28.5590179, lng: 77.0534842},
       zoom: 15
     };
+
+    componentDidMount(){
+      let itemsRef = firebase.database().ref('reports')
+      itemsRef.on("value",(snapshot) => {
+        let data = snapshot.val()
+        Object.entries(data.SOS).map(([key,value]) => heatmapData.positions.push({ lat:value.lat , lng:value.long }))
+      })
+    }
 
     render() {
       return (
