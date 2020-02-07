@@ -41,7 +41,7 @@ let heatmapData = {
       this.state = {loading: true};
     }
     static defaultProps = {
-      center: {lat: 28.5590179, lng: 77.0534842},
+      center: {lat: 28.6691, lng: 77.0929},
       zoom: 15
     };
 
